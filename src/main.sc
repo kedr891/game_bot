@@ -1,5 +1,6 @@
 require: slotfilling/slotFilling.sc
   module = sys.zb-common
+require: function.js
 theme: /
 
     state: Start
@@ -21,7 +22,7 @@ theme: /
             
             state: Open
             q: открыть
-            a: В сундуке монеты, {{getRandomInt(10)}} штук
+            a: В сундуке монеты, {{ getRandomInt(10) }} штук
         
         state: Straight
         q: * *прям* *
