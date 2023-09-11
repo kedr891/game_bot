@@ -4,20 +4,37 @@ theme: /
 
     state: Start
         q!: $regex</start>
-        a: Начнём.
+        a: Молви друг и войди!
 
-    state: Hello
-        intent!: /привет
-        a: Привет привет
+        state: Melon
+        intent!: Melon
+        a: Входите! Вы вошли в подземелье Мориию. Перед вами три коридора.
+        Ваши действия
 
-    state: Bye
-        intent!: /пока
-        a: Пока пока
-
+        state: Left
+        q: * *лев* *
+        a: Вас съел дракон
+        
+        state: Right
+        q: * *прав* *
+        a: Перед вами сундук. Ваши действия?
+            
+            state: Open
+            q: открыть
+            a: В сундуке монеты, {{getRandomInt(18)}} штук
+        
+        state: Left
+        q: * *прям* *
+        a: Чтобы выжить вам нужно сыграть в камень ножницы бумага. Играем?
+        
+        state: Back
+        q: (назад|~вернуться|~вернуть|~возвращаться)*
+        a:Вход завалило. Выберите другое направление.
+        
     state: NoMatch
         event!: noMatch
         a: Я не понял. Вы сказали: {{$request.query}}
 
-    state: Match
+        state: Match
         event!: match
         a: {{$context.intent.answer}}
